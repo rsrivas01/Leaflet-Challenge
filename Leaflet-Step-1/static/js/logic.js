@@ -39,11 +39,11 @@ d3.json(queryUrl, function(data) {
   // Once we get a response, send the data.features object to the createFeatures function
   function createFeatures(features) {
     return {
-      fillColor: chooseColor(features.properties.mag),
+      fillColor: chooseColor(features.geometry.coordinates[2]),
       color: "black",
       radius: chosenRadius(features.properties.mag),
       stroke: true,
-      weight: 1.0,
+      weight: 0.4,
       opacity: 1,
       fillOpacity: 1
     };
@@ -55,16 +55,16 @@ d3.json(queryUrl, function(data) {
     }
 
     // setting the color according to the number of magnitude reported
-    function chooseColor(mag) {
-      if (mag > 5) {
+    function chooseColor(depth) {
+      if (depth > 90) {
         return "#EA2C2C";
-    } else if (mag > 4) {
+    } else if (depth > 70) {
         return "#EA822C";
-    } else if (mag > 3) {
+    } else if (depth > 50) {
         return "#EA822C";
-    } else if (mag > 2) {
+    } else if (depth > 30) {
         return "#EE9C00";
-    } else if (mag > 1) {
+    } else if (depth > 10) {
         return "#D4EE00";
     } else {
         return "#98EE00";
