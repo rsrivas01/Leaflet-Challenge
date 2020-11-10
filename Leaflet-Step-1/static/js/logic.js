@@ -29,8 +29,36 @@ d3.json(queryUrl, function(data) {
       color: "white",
       radius: chosenRadius(feature.properties.mag),
       stroke: true,
-      weight: 1.0
+      weight: 1.0,
+      opacity: 1,
+      fillOpacity: 1
     }
 
-  };
-});
+    // Setting the radius of magnitude
+    function chosenRadius(magnitude) {
+      return magnitude * 4;
+
+    }
+
+    // setting the color according to the number of magnitude reported
+    function chooseColor(magnitude) {
+        if (magnitude > 5) {
+            return "#FF0000";
+        } else if (magnitude > 4) {
+            return "#FF3300";
+        } else if (magnitude > 3) {
+            return "#ff9900";
+          } else if (magnitude > 2) {
+            return "#FFFF00";
+          } else if (magnitude > 1) {
+            return "#99ff00";
+        } else {
+            return "#00FF00";
+        }
+
+
+    }
+  }
+  createFeatures.addTo(myMap);
+
+})
