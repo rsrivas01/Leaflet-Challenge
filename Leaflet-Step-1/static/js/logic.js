@@ -23,5 +23,14 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(data) {
   // Once we get a response, send the data.features object to the createFeatures function
-  createFeatures(data.features);
+  function createFeatures(features) {
+    return {
+      chosenColor: chooseColor(feature.properties.mag),
+      color: "white",
+      radius: chosenRadius(feature.properties.mag),
+      stroke: true,
+      weight: 1.0
+    }
+
+  };
 });
