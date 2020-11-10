@@ -22,6 +22,20 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(data) {
+
+  L.geoJson(data, {
+    pointToLayer: function(features, latlng) {
+      return L.circleMarker(latlng);
+    },
+    style: createFeatures,
+    onEachFeature: function(features, layer) {
+      layer.bindPopup(
+        "Magnitude: " + features.properties.mag + 
+        "<br>Location: " + features.properties.place
+        );
+    }
+  }).addTo(myMap);
+
   // Once we get a response, send the data.features object to the createFeatures function
   function createFeatures(features) {
     return {
@@ -41,16 +55,16 @@ d3.json(queryUrl, function(data) {
     }
 
     // setting the color according to the number of magnitude reported
-    function chooseColor(depth) {
-      if (depth > 90) {
+    function chooseColor(mag) {
+      if (mag > 5) {
         return "#EA2C2C";
-    } else if (depth > 70) {
+    } else if (mag > 4) {
         return "#EA822C";
-    } else if (depth > 50) {
+    } else if (mag > 3) {
         return "#EA822C";
-    } else if (depth > 30) {
+    } else if (mag > 2) {
         return "#EE9C00";
-    } else if (depth > 10) {
+    } else if (mag > 1) {
         return "#D4EE00";
     } else {
         return "#98EE00";
