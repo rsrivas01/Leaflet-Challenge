@@ -58,17 +58,17 @@ d3.json(queryUrl, function(data) {
     // setting the color according to the number of magnitude reported
     function chooseColor(depth) {
       if (depth > 90) {
-        return "#045a8d";
+        return "#253494";
     } else if (depth > 70) {
-        return "#EA822C";
+        return "#2c7fb8";
     } else if (depth > 50) {
-        return "#EA822C";
+        return "#41b6c4";
     } else if (depth > 30) {
-        return "#EE9C00";
+        return "#7fcdbb";
     } else if (depth > 10) {
-        return "#D4EE00";
+        return "#c7e9b4";
     } else {
-        return "#98EE00";
+        return "#ffffcc";
     }
     }
   }
@@ -80,7 +80,7 @@ d3.json(queryUrl, function(data) {
 
       var div = L.DomUtil.create('div', 'info legend'),
           grades = [-10, 10, 30, 50, 70, 90],
-          colors = [];
+          colors = ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494"];
 
       // loop through our density intervals and generate a label with a colored square for each interval
       for (var i = 0; i < grades.length; i++) {
