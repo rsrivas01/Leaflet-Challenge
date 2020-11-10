@@ -13,6 +13,7 @@ html {
 .legend {
   line-height: 18px;
   color: #555;
+  background: white;
 }
 .legend i {
   width: 18px;
