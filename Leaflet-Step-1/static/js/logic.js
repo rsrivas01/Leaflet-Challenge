@@ -31,6 +31,7 @@ d3.json(queryUrl, function(data) {
     onEachFeature: function(features, layer) {
       layer.bindPopup(
         "Magnitude: " + features.properties.mag + 
+        "<br>Depth: " + features.geometry.coordinates[2] +
         "<br>Location: " + features.properties.place
         );
     }
