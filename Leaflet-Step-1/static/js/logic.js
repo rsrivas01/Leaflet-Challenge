@@ -4,13 +4,13 @@
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
-    id: "mapbox/streets-v11",
+    id: "mapbox/light-v10",
     accessToken: API_KEY
   });
 
 // Create a map object
 var myMap = L.map("mapid", {
-    center: [15.5994, -28.6731],
+    center: [32.7767, -96.7970],
     zoom: 3
   });
 
@@ -25,15 +25,15 @@ d3.json(queryUrl, function(data) {
   // Once we get a response, send the data.features object to the createFeatures function
   function createFeatures(features) {
     return {
-      chosenColor: chooseColor(feature.properties.mag),
-      color: "white",
-      radius: chosenRadius(feature.properties.mag),
+      fillColor: chooseColor(features.properties.mag),
+      color: "black",
+      radius: chosenRadius(features.properties.mag),
       stroke: true,
       weight: 1.0,
       opacity: 1,
       fillOpacity: 1
-    }
-
+    };
+  
     // Setting the radius of magnitude
     function chosenRadius(magnitude) {
       return magnitude * 4;
@@ -41,24 +41,23 @@ d3.json(queryUrl, function(data) {
     }
 
     // setting the color according to the number of magnitude reported
-    function chooseColor(magnitude) {
-        if (magnitude > 5) {
-            return "#FF0000";
-        } else if (magnitude > 4) {
-            return "#FF3300";
-        } else if (magnitude > 3) {
-            return "#ff9900";
-          } else if (magnitude > 2) {
-            return "#FFFF00";
-          } else if (magnitude > 1) {
-            return "#99ff00";
-        } else {
-            return "#00FF00";
-        }
+    function chooseColor(depth) {
+      if (depth > 90) {
+        return "#EA2C2C";
+    } else if (depth > 70) {
+        return "#EA822C";
+    } else if (depth > 50) {
+        return "#EA822C";
+    } else if (depth > 30) {
+        return "#EE9C00";
+    } else if (depth > 10) {
+        return "#D4EE00";
+    } else {
+        return "#98EE00";
+    }
 
 
     }
   }
-  createFeatures.addTo(myMap);
 
-})
+}).addTo(myMap);
