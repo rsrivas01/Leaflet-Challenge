@@ -6,5 +6,5 @@ The different sizes of the circles represent the magnitude of earthquakes and it
 depth of earthquakes. Colors reference can be shown in the legend. Click on any circle to get more information about
 the selected earthquake. Grayscale map was used as a default map. 
 
-Must use Google Chrome or Mozilla Firefox for the map to work. In addition, must have mapbox API KEY and insert the
-key in config.js file. 
+<h6> Must use Google Chrome or Mozilla Firefox for the map to work. In addition, must have mapbox API KEY and insert the
+key in config.js file. </h6>
