@@ -23,11 +23,13 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(data) {
 
+  // Add a GeoJson layer
   L.geoJson(data, {
     pointToLayer: function(features, latlng) {
       return L.circleMarker(latlng);
     },
     style: createFeatures,
+    // Create popup
     onEachFeature: function(features, layer) {
       layer.bindPopup(
         "Magnitude: " + features.properties.mag + 
@@ -82,7 +84,7 @@ d3.json(queryUrl, function(data) {
           grades = [-10, 10, 30, 50, 70, 90],
           colors = ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494"];
 
-      // loop through our density intervals and generate a label with a colored square for each interval
+      // loop through our density intervals and generate a colored label square for each interval
       for (var i = 0; i < grades.length; i++) {
           div.innerHTML +=
               '<i style="background:' + colors[i] + '"></i> ' +
