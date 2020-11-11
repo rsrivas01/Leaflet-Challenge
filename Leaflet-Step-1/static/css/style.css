@@ -15,6 +15,8 @@ html {
   color: #555;
   background: lightgray;
   padding: 5px;
+  border-radius: 3px;
+
 }
 .legend i {
   width: 18px;
